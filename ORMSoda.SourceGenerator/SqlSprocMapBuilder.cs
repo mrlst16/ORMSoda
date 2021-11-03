@@ -7,11 +7,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace ORMSoda
+namespace ORMSoda.SourceGenerator
 {
-    public class MapBuilder
+    public class SqlSprocMapBuilder
     {
-        public MapBuilder()
+        public SqlSprocMapBuilder()
         {
         }
 

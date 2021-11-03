@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMSoda", "ORMSoda\ORMSoda.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMSoda.SourceGenerator", "ORMSoda.SourceGenerator\ORMSoda.SourceGenerator.csproj", "{03ACB3C6-B0AD-44A4-8E50-27FC5CAA2E65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMSoda.Interfaces", "ORMSoda.Interfaces\ORMSoda.Interfaces.csproj", "{F2C902E7-831F-4479-B492-8334247A3849}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMSoda.Interfaces", "ORMSoda.Interfaces\ORMSoda.Interfaces.csproj", "{F2C902E7-831F-4479-B492-8334247A3849}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMSoda.Tests", "ORMSoda.Tests\ORMSoda.Tests.csproj", "{8216EEB8-D1AD-46E7-84C2-9A0A15C38945}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMSoda.Tests.TestProgram", "ORMSoda.Tests.TestProgram\ORMSoda.Tests.TestProgram.csproj", "{56C77EDC-A468-4490-B0E6-86C94DC5DB93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8216EEB8-D1AD-46E7-84C2-9A0A15C38945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8216EEB8-D1AD-46E7-84C2-9A0A15C38945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8216EEB8-D1AD-46E7-84C2-9A0A15C38945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C77EDC-A468-4490-B0E6-86C94DC5DB93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C77EDC-A468-4490-B0E6-86C94DC5DB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C77EDC-A468-4490-B0E6-86C94DC5DB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C77EDC-A468-4490-B0E6-86C94DC5DB93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
