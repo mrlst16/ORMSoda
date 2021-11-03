@@ -156,10 +156,9 @@ namespace ORMSoda.SourceGenerator
             result.AppendLine($"var item = new {genericType.Name}();");
             IterateMappableProperties(
                 genericType,
-                onPrimitiveOrString: (i, property) =>
+                onPrimitiveOrString: (i, prop) =>
                 {
-                    result.AppendLine($"item.{property.Name} = GetValue<{property.PropertyType.Name}>(row, \"{property.ORMSoda_DbFieldName()}\");");
-                    result.AppendLine();
+                    result.AppendLine($"item.{prop.Name} = GetValue<{prop.PropertyType.Name}>(row, \"{prop.ORMSoda_DbFieldName()}\");");
                 });
             result.AppendLine("\t\t}");//End foreach
             result.AppendLine("return response;");
@@ -200,7 +199,7 @@ namespace ORMSoda.SourceGenerator
 
         public IDictionary<string, string> GetPropertiesPrimitives(Type type)
         {
-            Dictionary<string, string> result = new();
+            Dictionary<string, string> result = new Dictionary<string, string>();
             var properties = type.GetProperties();
             foreach (var property in properties)
             {

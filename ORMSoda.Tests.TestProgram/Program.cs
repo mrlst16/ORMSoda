@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace ORMSoda.Tests.TestProgram
 {
-    class Program
+    public partial class Program
     {
-        static void Main(string[] args)
+        static partial void HelloFrom(string name);
+        public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            HelloFrom("Balls");
         }
     }
 }

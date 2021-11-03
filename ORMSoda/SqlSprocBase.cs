@@ -47,7 +47,7 @@ namespace ORMSoda
             result = default(T);
             try
             {
-                result = row.Field<T>(columnName);
+                //result = row.Field<T>(columnName);
             }
             catch (Exception e)
             {
@@ -62,7 +62,7 @@ namespace ORMSoda
             var result = default(T);
             try
             {
-                result = row.Field<T>(columnName);
+                //result = row.Field<T>(columnName);
             }
             catch (Exception e)
             {
