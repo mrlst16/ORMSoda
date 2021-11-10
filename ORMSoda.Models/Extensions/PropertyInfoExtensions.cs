@@ -1,7 +1,6 @@
-﻿using ORMSoda.Attributes;
-using System.Reflection;
+﻿using System.Reflection;
 
-namespace ORMSoda.Extensions
+namespace ORMSoda.Models.Extensions
 {
     public static class PropertyInfoExtensions
     {

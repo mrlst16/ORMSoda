@@ -1,4 +1,4 @@
-﻿using ORMSoda.Attributes;
+﻿using ORMSoda.SourceGenerator.Attributes;
 using System.Collections.Generic;
 
 namespace ORMSoda.Tests.TestClasses

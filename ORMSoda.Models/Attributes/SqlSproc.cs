@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ORMSoda.Attributes
+namespace ORMSoda.Models
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class SqlSproc : Attribute

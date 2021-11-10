@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ORMSoda.Attributes
+namespace ORMSoda.SourceGenerator.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class TableMapping : Attribute

@@ -1,5 +1,5 @@
-﻿using ORMSoda.Attributes;
-using ORMSoda.Extensions;
+﻿using ORMSoda.SourceGenerator.Attributes;
+using ORMSoda.SourceGenerator.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,14 +11,32 @@ namespace ORMSoda.SourceGenerator
 {
     public class SqlSprocMapBuilder
     {
+        public List<string> Usings { get; set; }
+
         public SqlSprocMapBuilder()
         {
+            Usings = new List<string>();
+
         }
+
 
         public string CreateClass(string sprocName, Type requestType, Type responseType)
         {
-            var className = $"Mapper_From{requestType.Name}To{responseType.Name}";
+            Usings.Add($"using {requestType.Namespace};");
+            Usings.Add($"using {responseType.Namespace};");
+            Usings.Add($"using System.Threading.Tasks;");
+            Usings.Add($"using System.Data;");
+            Usings.Add($"using System;");
+            Usings.Add($"using ORMSoda;");
+            Usings.Add($"using System.Data.SqlClient;");
+            
+            Usings.AddRange(CreateUsings(requestType));
+            Usings.AddRange(CreateUsings(responseType));
+
             StringBuilder result = new StringBuilder();
+            result.AppendLines(Usings.Distinct());
+
+            var className = $"SqlSprocMapper_From{requestType.Name}To{responseType.Name}";
             result.AppendLine($"public class {className}:SqlSprocBase<{requestType.Name}, {responseType.Name}>{{");
             Create_InheritedConstructors(result, className);
             Create_CallMethod(result, sprocName, requestType, responseType);
@@ -63,8 +81,19 @@ namespace ORMSoda.SourceGenerator
             return result.ToString();
         }
 
+        private List<string> CreateUsings(Type requestType)
+        {
+            var result = new List<string>();
+            IterateMappableProperties(requestType, onMap: (i, property) =>
+            {
+                result.Add($"using {property.PropertyType.Namespace};");
+            });
+            return result;
+        }
+
         private void IterateMappableProperties(
             Type type,
+            Action<int, PropertyInfo> onMap = null,
             Action<int, PropertyInfo> onEnumerable = null,
             Action<int, PropertyInfo> onObject = null,
             Action<int, PropertyInfo> onPrimitiveOrString = null,
@@ -78,6 +107,7 @@ namespace ORMSoda.SourceGenerator
                 var propertyGenericTypes = property.PropertyType.GenericTypeArguments;
                 var firstGenericType = propertyGenericTypes?.FirstOrDefault();
                 if (!property.WantsToBeMapped()) continue;
+                if (onMap != null) onMap(i, property);
 
                 switch (property.PropertyType)
                 {
@@ -87,20 +117,19 @@ namespace ORMSoda.SourceGenerator
                                 && t != typeof(string)
                                 && propertyGenericTypes.Length == 1
                                 && onEnumerable != null:
-                        onEnumerable(i, property);
+                        if (onEnumerable != null) onEnumerable(i, property);
                         break;
                     case Type t when t.IsClass
                                 && (!t.GenericTypeArguments?.FirstOrDefault()?.IsValueType ?? false)
                                 && t.GenericTypeArguments?.FirstOrDefault() != typeof(string)
                                 && t != typeof(string)
                                 && onObject != null:
-                        onObject(i, property);
+                        if (onObject != null) onObject(i, property);
                         break;
                     case Type t when (t.IsPrimitive || t == typeof(string)) && onPrimitiveOrString != null:
-                        onPrimitiveOrString(i, property);
+                        if (onPrimitiveOrString != null) onPrimitiveOrString(i, property);
                         break;
                     default:
-                        onPrimitiveOrString(i, property);
                         break;
                 }
             }

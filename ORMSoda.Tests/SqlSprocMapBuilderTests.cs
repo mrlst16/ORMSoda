@@ -3,6 +3,7 @@ using ORMSoda.Tests.TestClasses;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using TestRequest = ORMSoda.Tests.TestClasses.TestRequest;
 
 namespace ORMSoda.Tests
 {
@@ -12,12 +13,6 @@ namespace ORMSoda.Tests
         public SqlSprocMapBuilderTests()
         {
             _mapBuilder = new SqlSprocMapBuilder();
-        }
-
-        [Fact]
-        public void Test1()
-        {
-
         }
 
         [Fact]
@@ -31,7 +26,7 @@ namespace ORMSoda.Tests
         public void CreateMethod_ProperString()
         {
             StringBuilder sb = new StringBuilder();
-            _mapBuilder.Create_CallMethod(sb, "TestSproc", typeof(TestRequest), typeof(TestResponse));
+            _mapBuilder.Create_CallMethod(sb, "TestSproc", typeof(TestClasses.TestRequest), typeof(TestClasses.TestResponse));
             var str = sb.ToString();
         }
 

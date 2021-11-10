@@ -1,14 +1,29 @@
-﻿using System;
+﻿using Microsoft.Extensions.Hosting;
+using ORMSoda.SourceGenerator.Extensions;
 using System.Threading.Tasks;
+using System.Data;
+using System;
+using ORMSoda;
+using System.Collections.Generic;
+using ORMSoda.SourceGenerator;
+
 
 namespace ORMSoda.Tests.TestProgram
 {
     public partial class Program
     {
-        static partial void HelloFrom(string name);
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            HelloFrom("Balls");
+            var host = Setup();
         }
+
+        public static IHost Setup()
+            => Host
+            .CreateDefaultBuilder()
+            .ConfigureServices(services =>
+            {
+                services.RegisterORMSoda();
+            })
+            .Build();
     }
 }
