@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
-using ORMSoda.SourceGenerator.Extensions;
+//using ORMSoda.SourceGenerator.Extensions;
 using System.Threading.Tasks;
 using System.Data;
 using System;
 using ORMSoda;
 using System.Collections.Generic;
-using ORMSoda.SourceGenerator;
-
 
 namespace ORMSoda.Tests.TestProgram
 {
@@ -22,7 +20,7 @@ namespace ORMSoda.Tests.TestProgram
             .CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
-                services.RegisterORMSoda();
+                //services.RegisterORMSoda();
             })
             .Build();
     }

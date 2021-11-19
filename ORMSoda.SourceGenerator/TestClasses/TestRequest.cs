@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace ORMSoda.SourceGenerator
 {
+    [SqlSproc("TestSproc", typeof(TestResponse))]
     public class TestRequest
     {
         public int Id { get; set; }
